@@ -14,8 +14,12 @@ pipeline {
         
         stage('Setting Environments') {
           steps {
-              sh 'echo "Pipeline started"'
+              sh 'gcloud auth activate-service-account --key-file=/root/gcp.json'
           }
         }
-    }
+    	stage('Getting Values') {
+          steps {
+		sh 'gcloud projects list'
+		}
+	}
 }
