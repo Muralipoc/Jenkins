@@ -24,7 +24,7 @@ pipeline {
 	}
 	stage('Directory') {
           steps {
-                sh 'pwd'
+                sh 'sh 'sudo rm -r *;sudo git clone https://github.com/Muralipoc/Jenkins.git'
                 }
         }
 }
