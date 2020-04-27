@@ -1,14 +1,16 @@
-provider "google" {
-  credentials = file("/root/gcp.json")
-  project     = "test-jenkins-275418"
-  region      = "us-central1"
+terraform {
+  backend "s3" {
+    bucket = "terraform-bucket-murali"
+    prefix  = "terraform/state"
+    region = "us-east1"
+  }
 }
 
 resource "google_compute_instance" "default" {
   project      = "test-jenkins-275418"
   name         = "test"
   machine_type = "n1-standard-1"
-  zone         = "us-central1-a"
+  zone         = "us-east1"
 
   tags = ["foo", "bar"]
 
@@ -40,5 +42,5 @@ resource "google_compute_instance" "default" {
 }
 
 output "machinename" {
-  value = "${google_compute_instance.default.name}"
+  value = "${google_compute_instance.default.network_interface.network_ip}"
 }
