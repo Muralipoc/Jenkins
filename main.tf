@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
     bucket = "terrafrom-muralipoc-test"
-    prefix = "demo"
+    prefix = "demo-1"
     credentials = "/root/account.json"
   }
 }
