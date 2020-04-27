@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
     bucket = "terrafrom-muralipoc-test"
-    prefix = "demo-1"
+    prefix = "demos"
     credentials = "/root/account.json"
   }
 }
@@ -13,34 +13,43 @@ provider "google" {
   zone        = "us-central1-c"
 }
 
+
 resource "google_compute_instance" "vm_instance" {
   name         = "test"
   machine_type = "n1-standard-1"
-  
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-9"
-    }
-  }
 
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
+  boot_disk {
+      initialize_params {
+        image = "ubuntu-os-cloud/ubuntu-1804-lts"
+                      }
+            }
+
+metadata_startup_script = "sudo apt-get -y update; sudo apt-get -y dist-upgrade ; sudo apt-get -y install nginx"
+
+metadata = {
+   ssh-keys = "demo:${file("/root/terraform/demo.pub")}"
   }
 
   network_interface {
     network = "default"
-
     access_config {
       // Ephemeral IP
     }
   }
+}
+  resource "google_compute_firewall" "default" {
+  name    = "demo-firewall"
+  network = "default"
 
-  metadata = {
-    foo = "bar"
+  allow {
+  protocol = "tcp"
+  ports    = ["80"]
   }
 
-  metadata_startup_script = "echo hi > /test.txt"
+  allow {
+  protocol = "icmp"
+  }
+  }
 
 }
 
