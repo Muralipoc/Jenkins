@@ -1,5 +1,5 @@
 terraform {
-  backend "s3" {
+  backend "gcs" {
     bucket = "terraform-bucket-murali"
     prefix  = "terraform/state"
     region = "us-east1"
