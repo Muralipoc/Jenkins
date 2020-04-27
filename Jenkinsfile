@@ -1,21 +1,21 @@
 pipeline {
     agent {
         node {
-            label 'master'
+              label 'master'
+              }
+           }
+    stages {
+
+        stage('pipeline started') {
+          steps {
+              sh 'echo "Pipeline started"'
+          }
+        }
+        
+        stage('Setting Environments') {
+          steps {
+              sh 'echo "Pipeline started"'
+          }
         }
     }
-  
-stages {
-  
-      stage('pipeline started') {
-        steps {
-            sh 'echo "Pipeline started"'
-        }
-      }
-      
-      stage('Setting Environments') {
-        steps {
-            sh 'echo "Pipeline started"'
-        }
-      }
-  }
+}
