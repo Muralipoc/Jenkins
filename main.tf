@@ -2,7 +2,6 @@ terraform {
   backend "gcs" {
     bucket = "terraform-bucket-murali"
     prefix  = "terraform/state"
-    region = "us-east1"
   }
 }
 
