@@ -22,7 +22,7 @@ pipeline {
 		sh 'sudo gcloud projects list'
 		}
 	}
-	stage('Getting Values') {
+	stage('Directory') {
           steps {
                 sh 'pwd'
                 }
