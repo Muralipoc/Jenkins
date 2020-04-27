@@ -28,14 +28,18 @@ pipeline {
                 }
         }
         stage('terraform init') {
+            steps {
             ansiColor('xterm') {
                 sh 'sudo terraform init ./Jenkins'
             }
         }
+        }
         stage('terraform plan') {
+        steps {
             ansiColor('xterm') {
                 sh 'sudo terraform plan ./Jenkins'
             }
+        }
         }
 }
 }
