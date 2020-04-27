@@ -1,18 +1,14 @@
-terraform {
-  backend "gcs" {
-    bucket = "terraform-bucket-murali"
-    prefix  = "terraform/state"
-  }
+provider "google" {
+  credentials = "${file("/root/account.json")}"
+  project     = "terraform-275509"
+  region      = "us-central1"
+  zone        = "us-central1-c"
 }
 
-resource "google_compute_instance" "default" {
-  project      = "test-jenkins-275418"
+resource "google_compute_instance" "vm_instance" {
   name         = "test"
   machine_type = "n1-standard-1"
-  zone         = "us-east1"
-
-  tags = ["foo", "bar"]
-
+  
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-9"
@@ -41,5 +37,5 @@ resource "google_compute_instance" "default" {
 }
 
 output "machinename" {
-  value = "${google_compute_instance.default.network_interface.network_ip}"
+  value = "${google_compute_instance.vm_instance.network_interface.*.access_config[0]}"
 }

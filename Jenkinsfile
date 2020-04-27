@@ -12,16 +12,6 @@ pipeline {
           }
         }
 
-        stage('Setting Environments') {
-          steps {
-              sh 'sudo gcloud auth activate-service-account --key-file=/root/gcp.json'
-          }
-        }
-        stage('Getting Values') {
-          steps {
-                sh 'sudo gcloud projects list'
-                }
-        }
         stage('clonning') {
           steps {
                 sh 'sudo rm -r *;sudo git clone https://github.com/Muralipoc/Jenkins.git ;pwd'
