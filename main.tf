@@ -43,7 +43,7 @@ metadata = {
 
   allow {
   protocol = "tcp"
-  ports    = ["8081"]
+  ports    = ["808"]
   }
 
   allow {
