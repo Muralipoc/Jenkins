@@ -49,8 +49,6 @@ metadata = {
   allow {
   protocol = "icmp"
   }
-  }
-
 }
 
 output "machinename" {
