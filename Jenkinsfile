@@ -27,5 +27,15 @@ pipeline {
                 sh 'sudo rm -r *;sudo git clone https://github.com/Muralipoc/Jenkins.git ;pwd'
                 }
         }
+        stage('terraform init') {
+            steps {
+                sh 'sudo terraform init ./Jenkins'
+            }
+        }
+        stage('terraform plan') {
+            steps {
+                sh 'sudo terraform plan ./Jenkins'
+            }
+        }
 }
 }
