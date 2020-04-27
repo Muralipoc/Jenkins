@@ -1,10 +1,11 @@
-stage('checkout') {
-    node {
-      cleanWs()
-      checkout scm
+pipeline {
+    agent {
+        node {
+            label 'master'
+        }
     }
-  }
-  stages {
+  
+stages {
   
       stage('pipeline started') {
         steps {
