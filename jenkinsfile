@@ -1,0 +1,20 @@
+stage('checkout') {
+    node {
+      cleanWs()
+      checkout scm
+    }
+  }
+  stages {
+  
+      stage('pipeline started') {
+        steps {
+            sh 'echo "Pipeline started"'
+        }
+      }
+      
+      stage('Setting Environments') {
+        steps {
+            sh 'echo "Pipeline started"'
+        }
+      }
+  }
