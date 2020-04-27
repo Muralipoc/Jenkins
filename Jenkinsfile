@@ -31,5 +31,12 @@ pipeline {
             }
         }
         }
+	stage('terraform apply') {
+        steps {
+            ansiColor('xterm') {
+                sh 'sudo terraform apply ./Jenkins'
+            }
+        }
+        }
 }
 }
